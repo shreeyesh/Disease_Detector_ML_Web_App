@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	{% if title %}
+		<title>Healthcare Blog - {{ title }}</title>
+	{% else %}
+		<title>Healthcare Blog</title>
+	{% endif %}
+</head>
+<body>
+	
+	  <div class="bg-img">
+      <div class="centered" style="font-size: 60px"><b>Healthcare ML Web Application</b></div>
+
+        <div class="container">
+          <div class="topnav">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('heartdisease') }}">Heart Disease</a>
+            <a href="{{ url_for('liverdisease') }}">Liver Disease</a>
+            <a href="{{ url_for('breastcancer') }}">Breast Cancer</a> 
+            <a href="{{ url_for('malariadisease') }}">Malaria</a>
+            <a href="{{ url_for('pneumoniadisease') }}">Pneumonia</a>
+          </div>   
+	      </div>
+	  </div>
+	    
+	<div id="homepage">
+      <h1>Healthcare ML Web Application</h1>
+    	<br><p>Access to quality healthcare and doctors has always been a concern in developing countries and remote areas. To deal with such issues, this healthcare web application is developed. Healthcare data was fed to machine learning training models and engines for predictive modelling. The accuracy of these models is directly proportional to the training they get. These models will be able to predict the potential health risks to a patient a lot earlier so that they could take the preventive measures and live a long healthy life.<p>
+        <div> 
+            <div class="one">
+                <a href="{{ url_for('heartdisease')}}"><div style="margin-top: 20px"><img style="max-width: 180px" src="/static/heartdisease.jpg"/></div><button id="sub" type="submit">Heart Disease</button></a>
+            </div>
+            <div class="one">
+                <a href="{{ url_for('liverdisease')}}"><div style="margin-top: 20px"><img style="max-width: 180px" src="/static/liverdisease.jpg"/></div><button id="sub" type="submit">Liver Disease</button></a>
+            </div>
+            <div class="one"> 
+                <a href="{{ url_for('breastcancer')}}"><div style="margin-top: 20px"><img style="max-width: 180px" src="/static/malignant.jpg"/></div><button id="sub" type="submit">Breast Cancer</button></a>
+            </div>
+            <div class="one">
+                <a href="{{ url_for('malariadisease')}}"><div style="margin-top: 20px"><img style="max-width: 180px" src="/static/malaria.jpg"/></div><button id="sub" type="submit">Malaria</button></a>
+            </div>
+            <div class="one">    
+            <a href="{{ url_for('pneumoniadisease')}}"><div style="margin-top: 20px"><img style="max-width: 180px" src="/static/pneumonia.jpg"/></div><button id="sub" type="submit">Pneumonia</button></a>
+            </div>
+        </div>
+        <footer>  
+          <div style="font-size: 18px; padding-left: 20px">
+            Developed By: Shreeyesh Tripathi<br>
+            <a href="https://github.com/shreeyesh"><div style="font-size: 15px; padding-left: 10px" class="a">GitHub</div></a>
+            <a href="https://www.linkedin.com/in/shreeyesh-tripathi-575b50173/"><div style="font-size: 15px; padding-left: 10px" class="a">LinkedIn</div></a>
+          </div>
+        </footer>
+          
+        </div>        
+    </div>
+    <style>
+
+       body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+      .bg-img {
+          /* The image used */
+          background-image: url("/static/healthcare.gif");
+
+          min-height: 400px;
+
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          /* Needed to position the navbar */
+          position: relative;
+        }
+
+        /* Position the navbar container inside the image */
+        .container {
+          position: absolute;
+          margin: 20px;
+          width: auto;
+        }
+
+        /* The navbar */
+        .topnav {
+          overflow: hidden;
+          background-color: #29AB87;
+        }
+
+        /* Navbar links */
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 18px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .centered {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+          }
+
+
+        #homepage {
+          padding: 20px;
+          border-spacing: 15px;
+          text-align: justify;
+          border-bottom-left-radius: 25px;
+          border-bottom-right-radius: 25px;
+        }
+
+        .img_holder img{
+            max-width: 100%; max-height: 100%;
+        }
+
+        .navbar{ 
+            background-color:#008081;
+        }
+
+        .one{
+            padding: 0px 10px;
+            display: inline-block;
+            margin: 4px 2px;
+        }
+
+        footer {
+          text-align: left;
+          padding: 3px;
+          background-color: white;
+          color: black;
+          position: relative;
+          margin-top : 110px;
+          width: 100%;
+
+        }
+
+        .a {
+          display: inline;
+          color: #32527B;
+        }
+
+        button {
+          background-color: #CD5C5C;
+          border: none;
+          min-width:180px;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+    </style>   
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

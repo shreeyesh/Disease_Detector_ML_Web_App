@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    {% if title %}
+        <title>Healthcare Blog - {{ title }}</title>
+    {% else %}
+        <title>Healthcare Blog</title>
+    {% endif %}
+</head>
+<body>
+    
+      <div class="bg-img">
+      <div class="centered" style="font-size: 60px"><b>Liver Disease</b></div>
+
+        <div class="container">
+          <div class="topnav">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('heartdisease') }}">Heart Disease</a>
+            <a href="{{ url_for('liverdisease') }}">Liver Disease</a>
+            <a href="{{ url_for('breastcancer') }}">Breast Cancer</a> 
+            <a href="{{ url_for('malariadisease') }}">Malaria</a>
+            <a href="{{ url_for('pneumoniadisease') }}">Pneumonia</a>
+          </div>   
+          </div>
+      </div>
+    <div id="liverdiseasepage">
+        <h1>Liver Disease</h1>
+        <p>
+        Liver disease is any disturbance of liver function that causes illness. The liver is responsible for many critical functions within the body and should it become diseased or injured, the loss of those functions can cause significant damage to the body. Patients with Liver disease have been continuously increasing because of excessive consumption of alcohol, inhale of harmful gases, intake of contaminated food, pickles and drugs.
+        <br><br>This data set contains 416 liver patient records and 167 non liver patient records collected from North East of Andhra Pradesh, India. The "Dataset" column is a class label used to divide groups into liver patient (liver disease) or not (no disease). This data set contains 441 male patient records and 142 female patient records.
+        <br>Data Source: <a href="https://www.kaggle.com/uciml/indian-liver-patient-records">Liver Disease Dataset</a>
+        <br><h5>Attribute Information:</h5>
+        Age of the patient
+        <br>Gender of the patient
+        <br>Total Bilirubin
+        <br>Direct Bilirubin
+        <br>Alkaline Phosphotase
+        <br>Alamine Aminotransferase
+        <br>Aspartate Aminotransferase
+        <br>Total Protiens
+        <br>Albumin
+        <br>Albumin and Globulin Ratio
+        <br>Dataset: field used to split the data into two sets (patient with liver disease, or no disease)<p><br>
+        
+        <h6>Sample Input Values</h6>
+        <img style="max-width:451" src="/static/lvr.png"/ class="center">  
+        
+    </div>
+
+    <div style="color:black; text-align: center"><h1>Liver Disease Predictor ML Application</h1><br></div> 
+        <div 
+            style="
+                width: 350px;
+                height: 40rem;
+                margin: 0px auto;
+                color: black;
+                border-radius: 25px;
+                padding: 10px 10px;
+              "
+            > 
+    
+        <form action="{{ url_for('liverdisease')}}" method="POST">
+            <div class="form-group">     
+            <label for="first"><strong>Age</strong></label> <input class="form-control" id="first" name="Age" type="number"  required="required" style="font-weight: bold"></div>
+
+            <div class="form-group">
+            <label for="second"><strong>Gender</strong></label>
+            <select class="form-control" name = 'Gender' style="font-weight: bold" required>
+             <option value="0">Female</option>
+             <option value="1">Male</option></select></div>
+
+            <div class="form-group">
+            <label for="third"><strong>Total Bilirubin</strong></label> <input class="form-control" id="third" name="Total_Bilirubin" type="number" required="required" style="font-weight: bold"></div>
+
+            <div class="form-group">
+            <label for="fourth"><strong>Direct Bilirubin</strong></label> <input class="form-control" id="fourth" name="Direct_Bilirubin" type="number" required="required" style="font-weight: bold"></div>
+
+            <div class="form-group">
+            <label for="fifth"><strong>Alkaline Phosphotase</strong></label> <input class="form-control" id="fifth" name="Alkaline_Phosphotase" type="number" step="any" required="required" style="font-weight: bold"></div>
+
+            <div class="form-group">
+            <label for="sixth"><strong>Alamine Aminotransferase</strong></label> <input class="form-control" id="sixth" name="Alamine_Aminotransferase" type="number" step="any" required="required" style="font-weight: bold"></div>
+
+            <div class="form-group">
+            <label for="seventh"><strong>Aspartate Aminotransferase</strong></label> <input class="form-control" id="seventh" name="Aspartate_Aminotransferase" type="number" step="any" required="required" style="font-weight: bold"></div>
+
+            <div class="form-group">
+            <label for="eighth"><strong>Total Protiens</strong></label> <input class="form-control" name="Total_Protiens" id="eighth" type="number" step="any" required="required" style="font-weight: bold"></div>
+
+            <div class="form-group">
+            <label for="ninth"><strong>Albumin</strong></label> <input class="form-control" id="ninth" name="Albumin" type="number" step="any" required="required" style="font-weight: bold"></div>
+
+            <div class="form-group">
+            <label for="tenth"><strong>Albumin and Globulin Ratio</strong></label> <input class="form-control" id="tenth" name="Albumin_and_Globulin_Ratio" type="number" step="any" required="required" style="font-weight: bold"></div>
+
+            <br><br><button id="sub" type="submit ">Predict</button>
+            </div>
+        </form>
+        <br><h3>{{ prediction_text }}</h3>  
+    </div>   
+      
+    <style>
+    
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+      .bg-img {
+          /* The image used */
+          background-image: url("/static/l.jpeg");
+
+          min-height: 400px;
+
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          /* Needed to position the navbar */
+          position: relative;
+        }
+
+        /* Position the navbar container inside the image */
+        .container {
+          position: absolute;
+          margin: 20px;
+          width: auto;
+        }
+
+        /* The navbar */
+        .topnav {
+          overflow: hidden;
+          background-color: #29AB87;
+        }
+
+        /* Navbar links */
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 18px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .centered {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+          }
+
+         
+        button {
+          background-color: #29AB87;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+
+        #liverdiseasepage {
+          padding: 20px;
+          border-spacing: 15px;
+          text-align: justify;
+          border-bottom-left-radius: 25px;
+          border-bottom-right-radius: 25px;
+        }
+
+        .navbar{ 
+            background-color:#008081;
+        }
+        
+        #first {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #second {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #third {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #fourth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #fifth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #sixth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #seventh {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #eighth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #ninth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #tenth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .one{
+            display: inline-block;
+        }
+    </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
